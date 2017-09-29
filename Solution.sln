@@ -122,6 +122,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "24_Physics", "24_Physics\24
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "13 Translation and Scale HanlS E04", "13 Translation and Scale HanlS E04\13 Translation and Scale HanlS E04.vcxproj", "{70B1BA81-005D-425F-B25B-E9EE8A77C3A8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "E04_Transformations Scene HanlS", "E04_Transformations Scene HanlS\E04_Transformations Scene HanlS.vcxproj", "{53960D5C-EE71-484A-AD11-9435FCF4AE8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -278,6 +280,10 @@ Global
 		{70B1BA81-005D-425F-B25B-E9EE8A77C3A8}.Debug|x86.Build.0 = Debug|Win32
 		{70B1BA81-005D-425F-B25B-E9EE8A77C3A8}.Release|x86.ActiveCfg = Release|Win32
 		{70B1BA81-005D-425F-B25B-E9EE8A77C3A8}.Release|x86.Build.0 = Release|Win32
+		{53960D5C-EE71-484A-AD11-9435FCF4AE8F}.Debug|x86.ActiveCfg = Debug|Win32
+		{53960D5C-EE71-484A-AD11-9435FCF4AE8F}.Debug|x86.Build.0 = Debug|Win32
+		{53960D5C-EE71-484A-AD11-9435FCF4AE8F}.Release|x86.ActiveCfg = Release|Win32
+		{53960D5C-EE71-484A-AD11-9435FCF4AE8F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -324,6 +330,7 @@ Global
 		{44D2C07B-798D-461B-9019-DFB240593888} = {5D1FB011-A2D8-4107-890B-BF1ACD0C0994}
 		{58CB6636-1057-466F-AB91-BADB3395421A} = {E0A09DA7-AF20-49C2-84DC-481ADDD01DCA}
 		{70B1BA81-005D-425F-B25B-E9EE8A77C3A8} = {E0A09DA7-AF20-49C2-84DC-481ADDD01DCA}
+		{53960D5C-EE71-484A-AD11-9435FCF4AE8F} = {E0A09DA7-AF20-49C2-84DC-481ADDD01DCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E55BAD98-3338-44E4-B96A-B8B21FC9B4FD}
