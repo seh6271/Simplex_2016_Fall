@@ -14,7 +14,7 @@ void Application::InitVariables(void)
 
 		//init the meshes
 		m_pMesh = new MyMesh();
-		m_pMesh->GenerateCube(1.0f, C_GREEN_LIME);
+		m_pMesh->GenerateCone(1.0f,1.5f, 10, C_GREEN_LIME);
 
 		m_vpCubes.push_back(m_pMesh);
 	}
