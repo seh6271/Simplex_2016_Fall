@@ -30,16 +30,56 @@ void Application::Display(void)
 
 	matrix4 m4View = m_pCameraMngr->GetViewMatrix();
 	matrix4 m4Projection = m_pCameraMngr->GetProjectionMatrix();
+
+	float fMax = 2.0f;
+
+	vector3 v3Stop0 = vector3(0.0f, 0.0f, 0.0f);
+	vector3 v3Stop1 = vector3(5.0f, 0.0f, 0.0f);
+	vector3 v3Stop2 = vector3(0.0f, 3.0f, 0.0f);
+
+	/*
+	vector3 v3Current = v3Start + v3End;
+	v3Current /= 100.0f;
+	static float percent = 0.0f;
+	v3Current *= percent;
+	percent++;
+	*/
+
+	//time shit
+	static DWORD startTime = GetTickCount();
+	DWORD currentTime = GetTickCount();
+	float fCurrentTime = (currentTime - startTime) / 1000.0f;
+
+
+	static float fPercent = MapValue(fCurrentTime, 0.0f, 5.0f, 0.0f, 1.0f);
+
+	vector3 v3Current = glm::lerp(v3Stop0, v3Stop2, fPercent);
+
+	matrix4 m4Model = glm::translate(IDENTITY_M4, v3Stop0);
 	
-	matrix4 m4Scale = glm::scale(IDENTITY_M4, vector3(2.0f,2.0f,2.0f));
-	static float value = 0.0f;
-	matrix4 m4Translate = glm::translate(IDENTITY_M4, vector3(value, 2.0f, 3.0f));
-	value += 0.01f;
 
-	//matrix4 m4Model = m4Translate * m4Scale;
-	matrix4 m4Model = m4Scale * m4Translate;
+	if (fPercent >= fMax)
+	{
+		currentTime = GetTickCount();
+	}
 
-	m_pMesh->Render(m4Projection, m4View, m4Model);
+	m_pMesh->Render(m4Projection, m4View, glm::translate(IDENTITY_M4, v3Stop0) * glm::scale(vector3 (.1f)));
+	m_pMesh->Render(m4Projection, m4View, glm::translate(IDENTITY_M4, v3Stop1) * glm::scale(vector3(.1f)));
+	m_pMesh->Render(m4Projection, m4View, glm::translate(IDENTITY_M4, v3Stop2) * glm::scale(vector3(.1f)));
+
+#pragma region Debugging Information
+	//Print info on the screen
+	uint nEmptyLines = 21;
+	for (uint i = 0; i < nEmptyLines; ++i)
+		m_pMeshMngr->PrintLine("");//Add a line on top
+								   //m_pMeshMngr->Print("						");
+
+	//m_pMeshMngr->Print("						");
+	m_pMeshMngr->Print("Current Time: ");//Add a line on top
+	m_pMeshMngr->PrintLine(std::to_string(fCurrentTime), C_YELLOW);
+
+
+#pragma endregion
 	
 	// draw a skybox
 	m_pMeshMngr->AddSkyboxToRenderList();
