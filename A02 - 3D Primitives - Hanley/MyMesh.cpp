@@ -533,8 +533,116 @@ void MyMesh::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 	Init();
 
 	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	
+	//center points of ends
+	vector3 topCenterPoint = vector3(0.0f, a_fRadius, 0.0f);
+	vector3 bottomCenterPoint = vector3(0.0f, -a_fRadius, 0.0f);
+
+	int topSize = -1;
+	int botSize = -1;
+
+
+	//storage for subdivisions
+	std::vector <std::vector <vector3>> topRings;
+	std::vector <std::vector <vector3>> bottomRings;
+
+	//angle calculations
+	//total interior angles
+	float totalIntAngles = ((a_nSubdivisions * 2) - 2) * 180;
+	//indiviudal interior angles
+	float intAngles = totalIntAngles / (a_nSubdivisions * 2);
+	//center angle (theta)
+	float centerAngle = 180 - intAngles;
+	//in radians
+	float theta = glm::radians(centerAngle);
+
+	float newAngle = 0;
+	float newAngle2 = 0;
+	float newRadius = .99f;
+	float radChange = 1.0f / ((a_nSubdivisions * 2));
+	
+
+	//center ring
+	std::vector <vector3> centerRing;
+	for (int i = 0; i < (a_nSubdivisions * 2) + 1; i++)
+	{
+		vector3 newCenter(glm::cos(newAngle) * a_fRadius, 0.0f, glm::sin(newAngle) * a_fRadius);
+		centerRing.push_back(newCenter);
+		//increment angle
+		newAngle += theta;
+	}
+
+	//newRadius -= radChange;	
+	newAngle2 += (PI / 2) / (a_nSubdivisions * 2);
+
+	//all remaining points
+	for (int j = 0; j < (a_nSubdivisions * 2); j++)
+	{
+		//reset newAngle
+		newAngle = 0;
+
+		//storage for points
+		std::vector <vector3> topPoints;
+		std::vector <vector3> bottomPoints;
+
+		for (int i = 0; i < (a_nSubdivisions * 2) + 1; i++)
+		{
+			float yCoordTop = (1 / a_nSubdivisions) * (j + 1);
+			float yCoordBot = (-j - 1) * (a_fRadius / a_nSubdivisions);
+			//create a point with trig
+			vector3 newTop((glm::cos(newAngle) * a_fRadius) * newRadius, (glm::sin(newAngle2) * a_fRadius), (glm::sin(newAngle) * a_fRadius) * newRadius);
+			vector3 newBottom((glm::cos(newAngle) * a_fRadius) * newRadius, -(glm::sin(newAngle2) * a_fRadius), (glm::sin(newAngle) * a_fRadius) * newRadius);
+			//add to storage
+			topPoints.push_back(newTop);
+			bottomPoints.push_back(newBottom);
+			//increment angle
+			newAngle += theta;
+		}
+		//add to vector of rings
+		topRings.push_back(topPoints);
+		bottomRings.push_back(bottomPoints);
+
+		//increase cap
+		topSize++;
+		botSize++;
+
+		newRadius -= radChange;
+		//next ring gets smaller
+		
+		newAngle2 += (PI / 2) / (a_nSubdivisions * 2);
+	}
+
+	//add faces
+
+	//from center
+	for (int i = 0; i < (a_nSubdivisions * 2); i++)
+	{
+		//top + center
+		AddQuad(centerRing[i + 1], centerRing[i], topRings[0][i + 1], topRings[0][i]);
+		//bottom + center
+		AddQuad(bottomRings[0][i + 1], bottomRings[0][i], centerRing[i + 1], centerRing[i]);
+	}
+
+	//ends
+	for (int i = 0; i < (a_nSubdivisions * 2); i++)
+	{
+		AddTri(topCenterPoint, topRings[topSize][i + 1], topRings[topSize][i]);
+		AddTri(bottomCenterPoint, bottomRings[botSize][i], bottomRings[botSize][i + 1]);
+	}
+
+	//between
+	if (a_nSubdivisions > 1)
+	{
+		for (int j = 0; j < (a_nSubdivisions * 2)-1; j++)
+		{
+			for (int i = 0; i < (a_nSubdivisions * 2); i++)
+			{
+				AddQuad(bottomRings[j][i], bottomRings[j][i + 1], bottomRings[j + 1][i], bottomRings[j + 1][i + 1]);
+				AddQuad(topRings[j][i + 1], topRings[j][i], topRings[j + 1][i + 1], topRings[j + 1][i]);
+			}
+		}
+	}
+
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
