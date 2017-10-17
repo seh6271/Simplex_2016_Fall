@@ -68,7 +68,7 @@ namespace detail
 		x(value_type(0)),
 		y(value_type(0)),
 		z(value_type(0))
-	{}
+{}
 
 	template <typename T>
 	GLM_FUNC_QUALIFIER tvec3<T>::tvec3
