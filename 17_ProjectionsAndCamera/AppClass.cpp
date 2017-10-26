@@ -3,8 +3,7 @@ using namespace Simplex;
 void Application::InitVariables(void)
 {
 	////Change this to your name and email
-	//m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu";
-
+	m_sProgrammer = "Shannon Hanley = seh627@g.rit.edu";
 	////Alberto needed this at this position for software recording.
 	//m_pWindow->setPosition(sf::Vector2i(710, 0));
 
@@ -58,10 +57,16 @@ void Application::Display(void)
 	m_pCamera->SetTarget(vector3(fPos, 0.0f, 9.0f));
 	fPos -= 0.01f;
 
+	matrix4 m4Projection = m_pCameraMngr -> GetProjectionMatrix();
+	matrix4 m4View = m_pCameraMngr ->GetViewMatrix();
+	matrix4 m4Model = ToMatrix4(m_qArcBall);
+
+	m_pMesh->Render(m4Projection, m4View, m4Model);
+
 	//draw the primitive
 	//m_pMesh->Render(m_pCamera->GetProjectionMatrix(), m_pCamera->GetViewMatrix(), ToMatrix4(m_qArcBall));
 	//m_pMesh->Render(m_pCamera, ToMatrix4(m_qArcBall));
-	m_pMesh2->Render(m_pCamera, glm::translate(vector3(0.0f, 0.0f, -5.0f)));
+	//m_pMesh2->Render(m_pCamera, glm::translate(vector3(0.0f, 0.0f, -5.0f)));
 
 	//render list call
 	m_uRenderCallCount = m_pMeshMngr->Render();

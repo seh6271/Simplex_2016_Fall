@@ -2,7 +2,7 @@
 void Application::InitVariables(void)
 {
 	////Change this to your name and email
-	//m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu";
+	m_sProgrammer = "Shannon Hanley - seh6271@rit.edu";
 
 	////Alberto needed this at this position for software recording.
 	//m_pWindow->setPosition(sf::Vector2i(710, 0));
@@ -35,8 +35,8 @@ void Application::Display(void)
 	matrix4 m4Projection = m_pCameraMngr->GetProjectionMatrix(); //Projection Matrix
 	
 	//Get a timer
-	//static uint uClock = m_pSystem->GenClock();
-	//float fTimer = m_pSystem->GetTimeSinceStart(uClock);
+	static uint uClock = m_pSystem->GenClock();
+	float fTimer = m_pSystem->GetTimeSinceStart(uClock);
 
 	//calculate the current position
 	//m_v3Rotation = vector3(125.0f, 1000.0f, -5.0f);
@@ -45,14 +45,23 @@ void Application::Display(void)
 	matrix4 m4RotY = glm::rotate(IDENTITY_M4, m_v3Rotation.y, vector3(0.0f, 1.0f, 0.0f));
 	matrix4 m4RotZ = glm::rotate(IDENTITY_M4, m_v3Rotation.z, vector3(0.0f, 0.0f, 1.0f));
 
+
+	quaternion q1;
+	quaternion q2 = glm::angleAxis(359.9f, vector3(0.0f, 0.0f, 1.0f));
+	float fPercentage = MapValue(fTimer, 0.0f, 5.0f, 0.0f, 1.0f);
+	quaternion qSLERP = glm::mix(q1, q2, fPercentage);
+	matrix4 m4Model = glm::toMat4(qSLERP);
+
+	m4Model = glm::toMat4(m_qOrientation);
+
 	//cos of m_v3Rotation.x, m_v3Rotation.y, m_v3Rotation.z
 	//keep between 0-1
 
-	quaternion q1 = glm::angleAxis(45.0f, vector3(1.0f, 0.0f, 0.0f));
+	//quaternion q1 = glm::angleAxis(45.0f, vector3(1.0f, 0.0f, 0.0f));
 
 	//matrix4 m4Rotation = glm::rotate(IDENTITY_M4, 60.0f, vector3(0.0f, 0.0f, 1.0f));
-	glm::mat4 RotMat4 = ToMatrix4(q1);
-	matrix4 m4Model = RotMat4;
+	//glm::mat4 RotMat4 = ToMatrix4(q1);
+	//matrix4 m4Model = RotMat4;
 
 	//for (uint i = 0; i < 2500; ++i)
 		//m4Model = m4Rotation * glm::translate(IDENTITY_M4, vector3(2.5f, 0.0f, 0.0f)) * glm::transpose(m4Rotation);

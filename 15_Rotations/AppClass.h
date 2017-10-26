@@ -17,6 +17,8 @@ class Application
 	String m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu";
 	MyMesh* m_pMesh = nullptr;
 	vector3 m_v3Rotation = vector3(0.0f, 0.0f, 0.0f);
+	vector3 m_v3Orientation;
+	quaternion m_qOrientation;
 
 private:
 	static ImGuiObject gui; //GUI object
