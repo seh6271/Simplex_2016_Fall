@@ -126,6 +126,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "E04_Transformations Scene H
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A02 - 3D Primitives - Hanley", "A02 - 3D Primitives - Hanley\A02 - 3D Primitives - Hanley.vcxproj", "{3278FE65-3557-4124-B5B3-0B3BE09ED5E1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A03 - LERP - Hanley", "A03 - LERP - Hanley\A03 - LERP - Hanley.vcxproj", "{D8786FA1-FB7A-444C-BA9E-CE04869AAB36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -290,6 +292,10 @@ Global
 		{3278FE65-3557-4124-B5B3-0B3BE09ED5E1}.Debug|x86.Build.0 = Debug|Win32
 		{3278FE65-3557-4124-B5B3-0B3BE09ED5E1}.Release|x86.ActiveCfg = Release|Win32
 		{3278FE65-3557-4124-B5B3-0B3BE09ED5E1}.Release|x86.Build.0 = Release|Win32
+		{D8786FA1-FB7A-444C-BA9E-CE04869AAB36}.Debug|x86.ActiveCfg = Debug|Win32
+		{D8786FA1-FB7A-444C-BA9E-CE04869AAB36}.Debug|x86.Build.0 = Debug|Win32
+		{D8786FA1-FB7A-444C-BA9E-CE04869AAB36}.Release|x86.ActiveCfg = Release|Win32
+		{D8786FA1-FB7A-444C-BA9E-CE04869AAB36}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -338,6 +344,7 @@ Global
 		{70B1BA81-005D-425F-B25B-E9EE8A77C3A8} = {E0A09DA7-AF20-49C2-84DC-481ADDD01DCA}
 		{53960D5C-EE71-484A-AD11-9435FCF4AE8F} = {E0A09DA7-AF20-49C2-84DC-481ADDD01DCA}
 		{3278FE65-3557-4124-B5B3-0B3BE09ED5E1} = {5D1FB011-A2D8-4107-890B-BF1ACD0C0994}
+		{D8786FA1-FB7A-444C-BA9E-CE04869AAB36} = {5D1FB011-A2D8-4107-890B-BF1ACD0C0994}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E55BAD98-3338-44E4-B96A-B8B21FC9B4FD}

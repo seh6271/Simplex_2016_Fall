@@ -57,8 +57,8 @@ void Application::Display(void)
 	m_pCamera->SetTarget(vector3(fPos, 0.0f, 9.0f));
 	fPos -= 0.01f;
 
-	matrix4 m4Projection = m_pCameraMngr -> GetProjectionMatrix();
-	matrix4 m4View = m_pCameraMngr ->GetViewMatrix();
+	matrix4 m4Projection = m_pCameraMngr->GetProjectionMatrix(); //where u are, what ur looking at, what is up in the world
+	matrix4 m4View = glm::lookAt(vector3(0, 0, 30), vector3(0, 0, 0), vector3(0, 1, 0));
 	matrix4 m4Model = ToMatrix4(m_qArcBall);
 
 	m_pMesh->Render(m4Projection, m4View, m4Model);
