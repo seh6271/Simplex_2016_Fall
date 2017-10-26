@@ -22,6 +22,9 @@ class Application
 	uint m_uProjection = 1; //The projection used for each mesh
 	MyCamera* m_pCamera = nullptr; //camera we will use in this application
 	String m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu"; //Programmer ID
+
+	matrix4 m4Projection;
+
 private:
 	static ImGuiObject gui; //GUI object
 

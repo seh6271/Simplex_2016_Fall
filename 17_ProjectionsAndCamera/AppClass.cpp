@@ -57,8 +57,15 @@ void Application::Display(void)
 	m_pCamera->SetTarget(vector3(fPos, 0.0f, 9.0f));
 	fPos -= 0.01f;
 
-	matrix4 m4Projection = m_pCameraMngr->GetProjectionMatrix(); //where u are, what ur looking at, what is up in the world
-	matrix4 m4View = glm::lookAt(vector3(0, 0, 30), vector3(0, 0, 0), vector3(0, 1, 0));
+	vector3 v3LookingAt = m_v3CameraPosition;
+	v3LookingAt.z -= 1.0f;
+
+	float fRatio = m_pSystem->GetWindowRatio();
+
+
+	//matrix4 m4Projection = glm::perspective(15.0f, fRatio, 30.01f, 1000.0f);
+	matrix4 m4Projection = glm::ortho(-10.0f, 10.0f , -10.0f, 10.0f, 0.01f, 1000.0f);
+	matrix4 m4View = glm::lookAt(vector3(0, 0, 30) + m_v3CameraPosition, vector3(0, 0, 0) + v3LookingAt, AXIS_Y); //where u are, what ur looking at, what is up in the world
 	matrix4 m4Model = ToMatrix4(m_qArcBall);
 
 	m_pMesh->Render(m4Projection, m4View, m4Model);

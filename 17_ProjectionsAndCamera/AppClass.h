@@ -23,6 +23,8 @@ class Application
 	MyMesh* m_pMesh2 = nullptr; //Primitive to display
 	MyCamera* m_pCamera = nullptr; //camera we will use in this application
 
+	vector3 m_v3CameraPosition;
+
 	String m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu";
 private:
 	static ImGuiObject gui; //GUI object
