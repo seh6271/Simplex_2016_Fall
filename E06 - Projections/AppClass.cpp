@@ -54,33 +54,40 @@ void Application::Display(void)
 	switch (m_uProjection)
 	{
 	default:
-	case 1:
-		m_pCamera->ResetCamera();
-		m_pCamera->CalculateProjectionMatrix();
-		m_pCamera->CalculateViewMatrix();
+	case 1: //default
+		m_pCamera->ResetCamera();		
 		break;
-	case 2:
+	case 2: //ortho but regular
 		m_pCamera->ResetCamera();
-		//m_pCamera->m_m4Projection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 0.01f, 1000.0f);
+		m_pCamera->SetPositionTargetAndUp(vector3(0.0f, 0.0f, 10.0f), vector3(0.0f, 0.0f, 0.0f), vector3(0.0f, 1.0f, 0.0f));
+		m_pCamera->SetPerspective(false);
+			break;
+	case 3://-z axis is up, camera is on pos x axis, 
+		m_pCamera->ResetCamera();		
+		m_pCamera->SetPositionTargetAndUp(vector3(30.0f, 0.0f, 0.0f), vector3(0.0f, 0.0f, 0.0f), vector3(0.0f, 0.0f, -1.0f));
 		break;
-	case 3:
+	case 4: //behind
 		m_pCamera->ResetCamera();
+		m_pCamera->SetPositionTargetAndUp(vector3(0.0f, 0.0f, -15.0f), vector3(0.0f, 0.0f, 0.0f), vector3(0.0f, 1.0f, 0.0f));
 		break;
-	case 4:
+	case 5: //case 4 but cone hits clipping plane
 		m_pCamera->ResetCamera();
+		m_pCamera->SetPositionTargetAndUp(vector3(0.0f, 0.0f, -15.0f), vector3(0.0f, 0.0f, 0.0f), vector3(0.0f, 1.0f, 0.0f));
+		m_pCamera->SetNearFar(vector2(5.0f, -5.0f));
 		break;
-	case 5:
+	case 6://case 4 but red hits clipping plane
 		m_pCamera->ResetCamera();
+		m_pCamera->SetPositionTargetAndUp(vector3(0.0f, 0.0f, -15.0f), vector3(0.0f, 0.0f, 0.0f), vector3(0.0f, 1.0f, 0.0f));
+		m_pCamera->SetNearFar(vector2(3.0f, 10.0f));
 		break;
-	case 6:
+	case 7://upside down
 		m_pCamera->ResetCamera();
-		break;
-	case 7:
-		m_pCamera->ResetCamera();
+		m_pCamera->SetPositionTargetAndUp(vector3(0.0f, 0.0f, 10.0f), vector3(0.0f, 0.0f, 0.0f), vector3(0.0f, -1.0f, 0.0f));
 		break;
 	}
 
-	
+	m_pCamera->CalculateProjectionMatrix();
+	m_pCamera->CalculateViewMatrix();
 
 	//draw the primitive
 	m_pMesh1->Render(m_pCamera, glm::rotate(IDENTITY_M4, 90.0f, AXIS_X));
