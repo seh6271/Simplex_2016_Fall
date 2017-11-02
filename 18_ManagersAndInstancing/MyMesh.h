@@ -8,6 +8,7 @@ Date: 2017/05
 #include "Definitions.h"
 #include "MyCamera.h"
 
+
 namespace Simplex
 {
 
@@ -21,6 +22,8 @@ class MyMesh
 	std::vector<vector3> m_lVertex;		//Composed vertex array
 	std::vector<vector3> m_lVertexPos;	//List of Vertices
 	std::vector<vector3> m_lVertexCol;	//List of Colors
+
+	
 
 	ShaderManager* m_pShaderMngr = nullptr;	//Shader Manager
 
@@ -218,6 +221,9 @@ public:
 	*/
 	void GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Color = C_WHITE);
 #pragma endregion
+
+	std::vector<vector3> GetVertexList();
+
 };
 
 }//namespace Simplex

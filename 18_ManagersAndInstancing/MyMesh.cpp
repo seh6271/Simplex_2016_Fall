@@ -1,4 +1,5 @@
 #include "MyMesh.h"
+
 using namespace Simplex;
 
 void MyMesh::Init(void)
@@ -386,6 +387,7 @@ void MyMesh::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 	CompleteMesh(a_v3Color);
 	CompileOpenGL3X();
 }
+
 void MyMesh::Render(MyCamera* a_pCamera, matrix4 a_mModel)
 {
 	Render(a_pCamera->GetProjectionMatrix(), a_pCamera->GetViewMatrix(), a_mModel);
@@ -593,4 +595,8 @@ void Simplex::MyMesh::Render(MyCamera * a_pCamera, std::vector<matrix4*> a_ToWor
 			fTransformsArray = nullptr;
 		}
 	}
+}
+std::vector<vector3> Simplex::MyMesh::GetVertexList()
+{
+	return m_lVertexPos;
 }
