@@ -32,6 +32,7 @@ private:
 
 	vector3 m_v3CamPos = vector3(); //position of camera
 	vector3 m_v3CamDir = vector3(); //direction camera is facing
+	matrix4 m_m4rotation = matrix4();
 
 	vector4 m_v4ClearColor; //Color of the scene
 	bool m_bRunning = false; //Is app running?
