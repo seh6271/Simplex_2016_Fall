@@ -32,7 +32,12 @@ private:
 
 	vector3 m_v3CamPos = vector3(); //position of camera
 	vector3 m_v3CamDir = vector3(); //direction camera is facing
+	vector3 m_v3CamTar = vector3(); //target of camera
+	vector3 m_v3CamUp = vector3(); //up vector of camera
+	vector3 m_v3CamRight = vector3(); //right vector of camera
 	matrix4 m_m4rotation = matrix4();
+	quaternion q1;
+	quaternion q2;
 
 	vector4 m_v4ClearColor; //Color of the scene
 	bool m_bRunning = false; //Is app running?
@@ -297,6 +302,7 @@ private:
 	OUTPUT: ---
 	*/
 	void NewFrame(void);
+
 #pragma endregion
 
 #pragma region The Rule of Three

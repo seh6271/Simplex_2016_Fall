@@ -1,6 +1,6 @@
 #include "AppClass.h"
 #include <iostream>
-#include <string>
+
 using namespace Simplex;
 void Application::InitVariables(void)
 {
@@ -27,7 +27,10 @@ void Application::InitVariables(void)
 
 	//camera variables
 	m_v3CamPos = vector3(0.0f, 3.0f, 20.0f);
-	m_v3CamDir = vector3(1.0f, 0.0f, 0.0f);
+	m_v3CamDir = vector3(0.0f, 0.0f, -1.0f);
+	m_v3CamTar = m_v3CamPos + m_v3CamDir;
+	m_v3CamUp = vector3(0.0f, 1.0f, 0.0f);
+	m_v3CamRight = vector3(1.0f, 0.0f, 0.0f);
 }
 void Application::Update(void)
 {
@@ -38,23 +41,20 @@ void Application::Update(void)
 	ArcBall();	
 
 	//Is the first person camera active?
-	//CameraRotation();
+	CameraRotation();
 
 	vector3 looking = m_v3CamPos;
 	looking.z -= 5.0f;
-	
-	
 
+	//update camera target
+	m_v3CamTar = m_v3CamPos + m_v3CamDir;
+
+	//set all values to camera
+	m_pCamera->SetTarget(m_v3CamTar);
+	m_pCamera->SetUp(m_v3CamUp);
 	m_pCamera->SetPosition(m_v3CamPos);
-	m_pCamera->SetTarget( m_v3CamDir);
-	std::cout << m_v3CamDir.x << ", " << m_v3CamDir.y << ", " << m_v3CamDir.z << std::endl;
-
-
-	//matrix4 m_m4View = glm::lookAt(m_v3CamPos, m_v3CamDir, AXIS_Y);
 	
-
-	//std::cout << m_v3CamPos.x << ", " << m_v3CamPos.y<<  ", " << m_v3CamPos.z << " " << looking.x<<  ", " << looking.y<<  ", " << looking.z<< std::endl;
-
+	
 	//Add objects to the Manager
 	for (int j = -50; j < 50; j += 2)
 	{

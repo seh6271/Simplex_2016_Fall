@@ -371,6 +371,16 @@ void Application::CameraRotation(float a_fSpeed)
 	//Change the Yaw and the Pitch of the camera
 	//m_v3CamDir = glm::rotateX(m_v3CamDir, -fAngleX);
 	//m_v3CamDir = glm::rotateY(m_v3CamDir, fAngleY);
+
+	//calc rotations based on right and up as x and y
+	q1 = glm::angleAxis(-fAngleX, m_v3CamRight);
+	q2 = glm::angleAxis(fAngleY, m_v3CamUp);
+
+	//update directional vectors w/ rotations
+	m_v3CamDir = q1 * q2 * m_v3CamDir;
+	m_v3CamRight = q1 * q2 * m_v3CamRight;
+	m_v3CamUp = q1 * q2 * m_v3CamUp;
+	m_v3CamTar = m_v3CamPos + m_v3CamDir;
 	
 	SetCursorPos(CenterX, CenterY);//Position the mouse in the center
 }
@@ -389,26 +399,27 @@ void Application::ProcessKeyboard(void)
 	if (fMultiplier)
 		fSpeed *= 5.0f;
 
+	
 	//movement controls
 	//forward
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		m_v3CamPos.z -= 1.0f;
+		m_v3CamPos += m_v3CamDir * fSpeed;
 	}		
 	//backward
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		m_v3CamPos.z += 1.0f;
+		m_v3CamPos -= m_v3CamDir * fSpeed;
 	}		
 	//left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		m_v3CamPos.x -= 1.0f;
+		m_v3CamPos -= m_v3CamRight * fSpeed;
 	}		
 	//right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		m_v3CamPos.x += 1.0f;
+		m_v3CamPos += m_v3CamRight * fSpeed;
 	}
 #pragma endregion
 }
