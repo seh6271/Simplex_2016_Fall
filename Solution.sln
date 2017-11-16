@@ -130,6 +130,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A03 - LERP - Hanley", "A03 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A04 - Camera - Hanley", "A04 - Camera - Hanley\A04 - Camera - Hanley.vcxproj", "{39852278-FF17-416C-B10F-142B1F5B796B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A05 - SAT - Hanley", "A05 - SAT - Hanley\A05 - SAT - Hanley.vcxproj", "{1ABE7B50-74FC-4E38-BFE9-D197AA2358E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -302,6 +304,10 @@ Global
 		{39852278-FF17-416C-B10F-142B1F5B796B}.Debug|x86.Build.0 = Debug|Win32
 		{39852278-FF17-416C-B10F-142B1F5B796B}.Release|x86.ActiveCfg = Release|Win32
 		{39852278-FF17-416C-B10F-142B1F5B796B}.Release|x86.Build.0 = Release|Win32
+		{1ABE7B50-74FC-4E38-BFE9-D197AA2358E8}.Debug|x86.ActiveCfg = Debug|Win32
+		{1ABE7B50-74FC-4E38-BFE9-D197AA2358E8}.Debug|x86.Build.0 = Debug|Win32
+		{1ABE7B50-74FC-4E38-BFE9-D197AA2358E8}.Release|x86.ActiveCfg = Release|Win32
+		{1ABE7B50-74FC-4E38-BFE9-D197AA2358E8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -352,6 +358,7 @@ Global
 		{3278FE65-3557-4124-B5B3-0B3BE09ED5E1} = {5D1FB011-A2D8-4107-890B-BF1ACD0C0994}
 		{D8786FA1-FB7A-444C-BA9E-CE04869AAB36} = {5D1FB011-A2D8-4107-890B-BF1ACD0C0994}
 		{39852278-FF17-416C-B10F-142B1F5B796B} = {5D1FB011-A2D8-4107-890B-BF1ACD0C0994}
+		{1ABE7B50-74FC-4E38-BFE9-D197AA2358E8} = {5D1FB011-A2D8-4107-890B-BF1ACD0C0994}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E55BAD98-3338-44E4-B96A-B8B21FC9B4FD}
