@@ -23,9 +23,37 @@ void Application::InitVariables(void)
 		m_pEntityMngr->UsePhysicsSolver();
 		//m_pEntityMngr->SetMass(i+1);
 	}
+
+	debugMode = false;
 }
 void Application::Update(void)
 {
+	m_v3CharPos = m_pEntityMngr->GetRigidBody("Steve")->GetCenterGlobal(); //get character's position vector
+	m_v3CamPos = m_pEntityMngr->GetRigidBody("Steve")->GetCameraFollow(); //get character's position vector
+
+	if (!debugMode) 
+	{		
+		m_pCameraMngr->SetPositionTargetAndUp(
+			m_v3CamPos, //Position
+			m_v3CharPos,//Target
+			AXIS_Y);	//Up
+	}
+	else
+	{
+		m_pCameraMngr->SetPositionTargetAndUp(
+			vector3(0.0f, 5.0f, 25.0f), //Position
+			vector3(0.0f, 0.0f, 0.0f),	//Target
+			AXIS_Y);					//Up
+
+	}
+	/*uint steveID = m_pEntityMngr->GetEntityIndex("Steve");
+
+	matrix4 mModel = glm::translate(m_v3CharPos) * ToMatrix4(m_qOrientation) * ToMatrix4(m_qArcBall);
+	m_pEntityMngr->GetRigidBody("Steve")->SetModelMatrix(mModel);
+	m_pEntityMngr->SetModelMatrix(mModel, steveID);*/
+
+
+
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->Update();
 
