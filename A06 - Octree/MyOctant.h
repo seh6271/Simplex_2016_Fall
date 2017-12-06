@@ -24,9 +24,9 @@ namespace Simplex
 		MeshManager* m_pMeshMngr = nullptr;//Mesh Manager singleton
 		MyEntityManager* m_pEntityMngr = nullptr; //Entity Manager Singleton
 
-		vector3 m_v3Center = vector3(0.0f); //Will store the center point of the octant
-		vector3 m_v3Min = vector3(0.0f); //Will store the minimum vector of the octant
-		vector3 m_v3Max = vector3(0.0f); //Will store the maximum vector of the octant
+		vector3 m_v3Center = vector3(0.0f, 0.0f, 0.0f); //Will store the center point of the octant
+		vector3 m_v3Min = vector3(0.0f, 0.0f, 0.0f); //Will store the minimum vector of the octant
+		vector3 m_v3Max = vector3(0.0f, 0.0f, 0.0f); //Will store the maximum vector of the octant
 
 		MyOctant* m_pParent = nullptr;// Will store the parent of current octant
 		MyOctant* m_pChild[8];//Will store the children of the current octant
