@@ -13,7 +13,7 @@ void Application::InitVariables(void)
 #ifdef DEBUG
 	uint uInstances = 900;
 #else
-	uint uInstances = 1849;
+	uint uInstances = 2600;
 #endif
 	int nSquare = static_cast<int>(std::sqrt(uInstances));
 	m_uObjects = nSquare * nSquare;
@@ -29,7 +29,7 @@ void Application::InitVariables(void)
 			m_pEntityMngr->SetModelMatrix(m4Position);
 		}
 	}
-	m_uOctantLevels = 1;
+	m_uOctantLevels = 0;
 	m_pEntityMngr->Update();
 }
 void Application::Update(void)
@@ -42,7 +42,11 @@ void Application::Update(void)
 
 	//Is the first person camera active?
 	CameraRotation();
+	//add octree
+	//m_uOctantLevels = 2;
+	m_pRoot = new MyOctant(m_uOctantLevels, 5);
 	
+
 	//Update Entity Manager
 	m_pEntityMngr->Update();
 
@@ -55,7 +59,11 @@ void Application::Display(void)
 	ClearScreen();
 
 	//display octree
-	//m_pRoot->Display();
+	if (m_uOctantID == -1)
+		m_pRoot->Display();
+	else
+		m_pRoot->Display(m_uOctantID);
+
 	
 	// draw a skybox
 	m_pMeshMngr->AddSkyboxToRenderList();
@@ -76,4 +84,6 @@ void Application::Release(void)
 {
 	//release GUI
 	ShutdownGUI();
+	SafeDelete(m_pRoot);
+	
 }
